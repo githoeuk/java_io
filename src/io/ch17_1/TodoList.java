@@ -156,6 +156,11 @@ public class TodoList {
                 arrCount.add(count++);
                 System.out.println(arrCount.get(count - 1) + 1 + "번쨰 : " + line);
             } // end of while
+            if (count == 0){
+                System.out.println("목록이 존재하지 않습니다.");
+            }else {
+                System.out.println("총 " + count +"개의 작업이 존재합니다.");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

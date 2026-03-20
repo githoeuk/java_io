@@ -13,6 +13,7 @@ public abstract class AbstractClient {
     private PrintWriter writerStream;
     private BufferedReader readerStream;
     private BufferedReader keyboardReader;
+    private boolean flag = true;
 
     public AbstractClient(String name) {
         this.name = name;
@@ -55,6 +56,10 @@ public abstract class AbstractClient {
                     while ((msg = readerStream.readLine()) != null) {
                         System.out.println("수신한 메시지 ");
                         System.out.println(msg);
+                        if(!flag){
+                            break;
+                        }
+
                     } // end of while
                 } catch (Exception e) {
                     System.out.println("서버와의 연결이 끊겼습니다.");
@@ -74,6 +79,11 @@ public abstract class AbstractClient {
                     System.out.println("보낼 메시지를 입력하세요 ");
                     while ((inputmsg = keyboardReader.readLine()) != null) {
                         writerStream.println("[" + name + "]" + inputmsg);
+                        // 종료 구문
+                        if("exit".equalsIgnoreCase(inputmsg)){
+                            flag = false;
+                            break;
+                        }
 
                     }
 
